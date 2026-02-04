@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>Open5GS</title>
+          <title>COM3 Open5GS</title>
 
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -23,6 +23,7 @@ export default class MyDocument extends Document {
           <link rel='icon' href='/static/favicon.ico'/>
           <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
           <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
+          <link rel="stylesheet" type="text/css" href="/static/css/theme.css" />
           <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
           {styleTags}
         </Head>

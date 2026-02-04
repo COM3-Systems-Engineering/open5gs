@@ -1,50 +1,57 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
+import { media, shadows } from 'helpers/style-utils';
 import styled from 'styled-components';
-import oc from 'open-color';
-import { media } from 'helpers/style-utils';
 
 import JsonSchemaForm from 'react-jsonschema-form';
 
-import Modal from './Modal';
 import Button from './Button';
-import Spinner from './Spinner';
 import Confirm from './Confirm';
+import Modal from './Modal';
+import Spinner from './Spinner';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   postion: relative;
   width: ${p => p.width || `1050px`};
+  background: ${p => p.theme.surfaceContainerHigh};
+  color: ${p => p.theme.onSurface};
+  border-radius: 8px;
+  overflow: hidden;
 
   ${media.mobile`
     width: calc(100vw - 2rem);
   `}
 
-  background: white;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+  box-shadow: ${shadows.xl};
 `
 
 const Header = styled.div`
   display: flex;
   justify-content: flex-start;
 
-  padding: 1rem;
-  font-size: 1.5rem;
-  background: ${oc.gray[1]};
+  padding: 1rem;  
+  font-size: 1.2rem;
+  background: ${p => p.theme.surfaceContainerHigh};
+  color: ${p => p.theme.onSurface};
 `
 
 const Body = styled.div`
-  padding: 2rem;
+  padding: 2rem;  
   font-size: 14px;
+  background: ${p => p.theme.surfaceContainerLowest};
+    color: !${p => p.theme.onSurface};
+
 
   height: ${p => p.height || `500px`};
   ${media.mobile`
     height: calc(100vh - 16rem);
   `}
 
-  overflow: scroll;
+  overflow: auto;
 `
 
 const Footer = styled.div`
@@ -52,6 +59,9 @@ const Footer = styled.div`
   justify-content: flex-end;
 
   padding: 1rem;
+    background: ${p => p.theme.surfaceContainerHigh};
+  color: ${p => p.theme.onSurface};
+
 `
 
 /* We can UI design with styled-componented. Later! */

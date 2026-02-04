@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 
-import oc from 'open-color';
 import styled from 'styled-components';
 
 import { Modal } from 'components';
@@ -9,8 +8,9 @@ import { media, shadows, transitions } from 'helpers/style-utils';
 
 const Wrapper = styled.div`
   width: 300px;
-  background: white;
+  background: ${p => p.theme.surfaceContainerHighest};
   border-radius: 12px;
+  border: 1px solid ${p => p.theme.outline};
   box-shadow: ${shadows.xl};
   overflow: hidden;
   
@@ -26,8 +26,8 @@ const TitleWrapper = styled.div`
 
   font-size: 1.2rem;
 
-  color: white;
-  background-color: ${oc.red[7]};
+  color: ${p => p.theme.onError};
+  background-color: ${p => p.theme.error};
 `;
 
 const ContentWrapper = styled.div`
@@ -35,16 +35,16 @@ const ContentWrapper = styled.div`
   height: 5rem;
 
   font-size: 1rem;
-  color: ${oc.gray[7]};
+  color: ${p => p.theme.onSurface};
 
-  background-color: ${oc.gray[1]};
+  background-color: ${p => p.theme.surfaceContainerLowest};
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: 0.5rem;
-  background-color: ${oc.gray[2]};
+  background-color: ${p => p.theme.surface};
 `;
 
 const Button = styled.button`
@@ -55,7 +55,7 @@ const Button = styled.button`
   text-align: center;
   font-size: 0.9rem;
 
-  border-radius: 3px;
+  border-radius: 10px;
   outline: none;
   cursor: pointer;
 
@@ -63,26 +63,27 @@ const Button = styled.button`
 `;
 
 const YesButton = Button.extend`
-  border: 1px solid ${oc.red[9]};
-  color: white;
-  background: ${oc.red[7]};
+  border: 1px solid ${p => p.theme.error};
+  color: ${p => p.theme.onError};
+  background: ${p => p.theme.error};
   &:hover {
-    background: ${oc.red[5]}
+    background: ${p => p.theme.onErrorContainer}
   }
   &:active {
-    background: ${oc.red[8]}
+    background: ${p => p.theme.errorContainer}
   }
 `;
 
 const NoButton = Button.extend`
-  border: 1px solid ${oc.gray[5]};
-  color: black;
-  background: ${oc.gray[3]};
+  width: 5rem;
+  border: 1px solid ${p => p.theme.outline};
+  color: ${p => p.theme.onSurface};
+  background: ${p => p.theme.surface};
   &:hover {
-    background: ${oc.gray[2]}
+    background: ${p => p.theme.surfaceContainerHigh}
   }
   &:active {
-    background: ${oc.gray[4]}
+    background: ${p => p.theme.surfaceContainerHigh}
   }
 `;
 
@@ -110,11 +111,11 @@ const Logout = ({ visible, onHide, onLogout }) => (
       <ButtonWrapper>
         <NoButton 
           onClick={onHide}>
-          Não
+          Cancelar
         </NoButton>
          <YesButton
           onClick={onLogout}>
-          Sim
+          Sair
         </YesButton>
       </ButtonWrapper>
     </Wrapper>

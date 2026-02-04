@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import oc from 'open-color';
 
 import { CircleIcon, Tooltip } from 'components';
+import MoonIcon from 'react-icons/lib/md/brightness-3';
+import SunIcon from 'react-icons/lib/md/brightness-5';
 import MenuIcon from 'react-icons/lib/md/menu';
 import PersonIcon from 'react-icons/lib/md/person';
 
@@ -13,7 +14,8 @@ const Wrapper = styled.div`
   height: 4rem;
 
   color: white;
-  background: ${oc.indigo[9]};
+  background: ${p => p.theme.surfaceContainer};
+  border-bottom: 1px solid ${p => p.theme.surfaceContainerHighest};
 `;
 
 const Menu = styled.div`
@@ -22,41 +24,58 @@ const Menu = styled.div`
 
   cursor: pointer;
   font-size: 1.5rem;
+
+  color: ${p => p.theme.onSurface};
 `;
 
 const Title = styled.div`
   margin: 0 0.5rem;
+  flex: 1;
+  color: ${p => p.theme.onSurface};
 
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-family: 'Ubuntu', sans-serif;
 `;
 
 const Thumbnail = styled.div`
   padding: 1rem 0;
-
-  position: absolute;
-  right: 2rem;
+  margin-right: 2rem;
 
   cursor: pointer;
 `;
 
+const ToggleBtn = styled.div`
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  color: ${p => p.theme.onSurface};
+`;
+
 const propTypes = {
   onSidebarToggle: PropTypes.func.isRequired,
-  onLogoutRequest: PropTypes.func.isRequired
+  onLogoutRequest: PropTypes.func.isRequired,
+  onToggleTheme: PropTypes.func,
+  currentTheme: PropTypes.string
 }
 
-const Header = ({ onSidebarToggle, onLogoutRequest }) => (
+const Header = ({ onSidebarToggle, onLogoutRequest, onToggleTheme, currentTheme }) => (
   <Wrapper>
     <Menu onClick={onSidebarToggle}>
       <MenuIcon/>
     </Menu>
     <Title>
-      Open5GS
+      COM3 Open5GS
     </Title>
+    <ToggleBtn onClick={onToggleTheme}>
+       {currentTheme === 'light' ? <MoonIcon/> : <SunIcon/>}
+    </ToggleBtn>
+    <div style={{ width: '1rem' }} />
     <Thumbnail onClick={onLogoutRequest}>
       <Tooltip bottom content='Logout' width="60px">
-        <CircleIcon size="2rem" background={oc['pink'][4]}>
-          <PersonIcon/>
+        <CircleIcon size="2rem" background={p => p.theme.tertiary}> {/* Keep static color for avatar or use theme.tertiary */}
+          <PersonIcon />
         </CircleIcon>
       </Tooltip>
     </Thumbnail>

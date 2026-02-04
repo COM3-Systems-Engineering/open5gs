@@ -1,13 +1,12 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as sidebarActions from 'modules/sidebar';
 
+import { Dimmed, Header, Logout } from 'components';
 import Session from 'modules/auth/session';
-import { Header, Logout, Dimmed } from 'components';
 
 class HeaderContainer extends Component {
   state = {
@@ -69,6 +68,8 @@ class HeaderContainer extends Component {
         <Header 
           onSidebarToggle={handleSidebarToggle}
           onLogoutRequest={logoutHandler.show}
+          onToggleTheme={this.props.onToggleTheme}
+          currentTheme={this.props.currentTheme}
         />
         <Logout 
           visible={logout.visible}

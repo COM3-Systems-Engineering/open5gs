@@ -23,6 +23,23 @@ const Wrapper = styled.div`
     animation: ${p => p.transitionLeave};
     animation-fill-mode: forwards;
   }
+
+`;
+
+const Backdrop = styled.div`
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  z-index: ${p => p.zindex - 1};
+
+  opacity: ${p => (p.visible ? 1 : 0)};
+  pointer-events: ${p => (p.visible ? 'auto' : 'none')};
+
+  transition: opacity 180ms ease;
 `;
 
 class Modal extends Component {
@@ -81,6 +98,14 @@ class Modal extends Component {
     } = this.props;
 
     return (
+      <div>
+      <Backdrop
+        visible={visible}
+        zindex={Number(zindex)}
+        onClick={() => {
+          this.props.onOutside();
+        }}
+      />
       <Wrapper 
         zindex={zindex}
         transitionEnter={transitionEnter} 
@@ -94,6 +119,7 @@ class Modal extends Component {
           }
         </CSSTransitionGroup>
       </Wrapper>
+      </div>
     );
   }
 }

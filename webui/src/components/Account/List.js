@@ -1,20 +1,41 @@
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
-import oc from 'open-color';
 import { media } from 'helpers/style-utils';
+import styled from 'styled-components';
 
-import { Layout, Blank } from 'components';
 import Item from './Item';
 
 const Wrapper = styled.div`
   display: block;
   margin: 2rem;
+  border: 1px solid ${p => p.theme.outline};
+  border-radius: 10px;
+  overflow: hidden;
   
   ${media.mobile`
     margin: 0.5rem 0.25rem;
   `}
 `
+
+const Account = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  line-height: 2.5rem;
+  padding : 0.25rem 2.5rem;
+  border-bottom: 1px solid ${p => p.theme.outline};
+
+  .username {
+    font-size: 1rem;
+    color: ${p => p.theme.onSurfaceVariant};
+    width: 320px;
+  }
+  .role {
+    font-size: 1rem;
+    color: ${p => p.theme.onSurfaceVariant};
+    width: 240px;
+  }
+`;
 
 const propTypes = {
   accounts: PropTypes.arrayOf(PropTypes.object),
@@ -42,6 +63,10 @@ const List = ({ accounts, deletedId, onEdit, onDelete, session }) => {
 
   return (
     <Wrapper>
+      <Account>
+        <div className='username'>Usuário</div>
+        <div className='role'>Perfil</div>
+      </Account>
       {accountList}
     </Wrapper>
   )

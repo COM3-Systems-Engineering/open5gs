@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import oc from 'open-color';
 
-import { media, transitions } from 'helpers/style-utils';
+import { media, shadows } from 'helpers/style-utils';
 
-import Modal from './Modal';
 import Button from './Button';
 import Dimmed from './Dimmed';
+import Modal from './Modal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,12 +18,16 @@ const Wrapper = styled.div`
     width: calc(100vw - 2rem);
   `}
 
-  background: white;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  background: ${p => p.theme.surfaceContainerHigh};
+  color: ${p => p.theme.onSurface};
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: ${shadows.xl};
 `
 
 const Message = styled.div`
   padding: 2rem;
+  font-size: 14px;
 `
 
 const Buttons = styled.div`

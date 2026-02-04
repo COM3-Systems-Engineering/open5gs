@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
 import oc from 'open-color';
+import styled from 'styled-components';
 
 import { CircleIcon } from 'components';
-import SchoolIcon from 'react-icons/lib/md/import-contacts'
+import SchoolIcon from 'react-icons/lib/md/import-contacts';
 
 const Wrapper = styled.div`
   position: relative;
@@ -37,7 +37,7 @@ const StyledBody = styled.div`
 
 const Blank = ({visible, title, body, onTitle}) => visible ? (
   <Wrapper>
-    <CircleIcon size="12rem" background={oc.gray[0]} color={oc.gray[8]}>
+    <CircleIcon size="12rem" background={p => p.theme.surfaceContainerHigh} color={p => p.theme.onSurface}>
       <SchoolIcon/>
     </CircleIcon>
     <StyledBody>{body}</StyledBody>

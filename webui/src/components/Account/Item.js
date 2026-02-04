@@ -1,14 +1,12 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-import styled from 'styled-components';
 import oc from 'open-color';
-import { media  } from 'helpers/style-utils';
+import styled from 'styled-components';
 
-import EditIcon from 'react-icons/lib/md/edit';
 import DeleteIcon from 'react-icons/lib/md/delete';
 
-import { Tooltip, Spinner } from 'components';
+import { Spinner, Tooltip } from 'components';
 
 const Card = styled.div`
   position: relative;
@@ -33,7 +31,7 @@ const Card = styled.div`
   }
 
   &:hover {
-    background: ${oc.gray[1]};
+    background: ${p => p.theme.surfaceContainerHigh};
 
     .actions {
       ${p => p.disabled ? 'opacity: 0;' : 'opacity: 1;'};
@@ -73,12 +71,12 @@ const Account = styled.div`
   margin : 0 2rem;
 
   .username {
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: ${oc.gray[8]};
     width: 320px;
   }
   .role {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: ${oc.gray[6]};
     width: 240px;
   }

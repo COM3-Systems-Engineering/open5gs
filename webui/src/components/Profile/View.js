@@ -1,19 +1,18 @@
-import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
-import oc from 'open-color';
 import { media } from 'helpers/style-utils';
+import oc from 'open-color';
+import styled from 'styled-components';
 
-import EditIcon from 'react-icons/lib/md/edit';
-import DeleteIcon from 'react-icons/lib/md/delete';
 import CloseIcon from 'react-icons/lib/md/close';
+import DeleteIcon from 'react-icons/lib/md/delete';
+import EditIcon from 'react-icons/lib/md/edit';
 
-import PhoneIcon from 'react-icons/lib/md/phone';
-import SecurityIcon from 'react-icons/lib/md/security';
 import PdnIcon from 'react-icons/lib/md/cast';
 import KeyboardControlIcon from 'react-icons/lib/md/keyboard-control';
+import PhoneIcon from 'react-icons/lib/md/phone';
+import SecurityIcon from 'react-icons/lib/md/security';
 
-import { Modal, Tooltip, Dimmed } from 'components';
+import { Dimmed, Modal, Tooltip } from 'components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -37,7 +36,7 @@ const Header = styled.div`
 
   .title {
     padding: 1.5rem;
-    color: ${oc.gray[8]};
+    color: ${p => p.theme.onSurface};
     font-size: 1.5rem;
   }
 

@@ -1,0 +1,63 @@
+/* Light Theme Variables */
+body.theme-light {
+    --bg-color: rgb(250 248 255);
+    --text-color: rgb(26 27 33);
+    --input-bg: rgb(255 255 255);
+    --input-color: rgb(26 27 33);
+    --input-border: rgb(117 118 128); /* outline */
+    --scrollbar-track: rgb(250 248 255);
+    --scrollbar-thumb: rgb(198 198 208); /* outlineVariant */
+    --scrollbar-thumb-hover: rgb(117 118 128);
+}
+
+/* Dark Theme Variables */
+body.theme-dark {
+    --bg-color: rgb(26 27 33);
+    --text-color: rgb(226 225 236);
+    --input-bg: rgb(40 41 47); /* surfaceContainerHigh */
+    --input-color: rgb(226 225 236);
+    --input-border: rgb(51 52 58); /* outline */
+    --scrollbar-track: rgb(26 27 33);
+    --scrollbar-thumb: rgb(69 70 79); /* outlineVariant */
+    --scrollbar-thumb-hover: rgb(51 52 58);
+}
+
+/* Global Body Styles */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+    scrollbar-width: thin;
+}
+
+/* Bootstrap Form Control Overrides */
+.form-control {
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    border-color: var(--input-border);
+}
+
+.form-control:focus {
+    background-color: var(--input-bg);
+    color: var(--input-color);
+    border-color: var(--scrollbar-thumb-hover); /* darken border on focus */
+}
+
+/* Webkit Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track); 
+}
+ 
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb); 
+    border-radius: 6px;
+    border: 3px solid var(--scrollbar-track); /* Padding around thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover); 
+}

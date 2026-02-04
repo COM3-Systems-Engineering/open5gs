@@ -1,10 +1,10 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-import styled from 'styled-components';
+import { transitions } from 'helpers/style-utils';
 import onClickOutside from 'react-onclickoutside';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import { media, transitions } from 'helpers/style-utils';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -38,10 +38,10 @@ class Modal extends Component {
 
   static defaultProps = {
     zindex: '500',
-    transitionEnter: `${transitions.stretchOut} .25s ease-in`,
-    transitionLeave: `${transitions.shrinkIn} .25s ease-in`,
-    transitionEnterTimeout: 300,
-    transitionLeaveTimeout: 150
+    transitionEnter: `${transitions.fadeInUp} 180ms cubic-bezier(0.16, 1, 0.3, 1)`,
+    transitionLeave: `${transitions.fadeOutDown} 180ms cubic-bezier(0.16, 1, 0.3, 1)`,
+    transitionEnterTimeout: 180,
+    transitionLeaveTimeout: 180
   }
 
   handleClickOutside = (e) => {

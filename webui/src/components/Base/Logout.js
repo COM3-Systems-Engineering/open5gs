@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
 import oc from 'open-color';
+import styled from 'styled-components';
 
 import { Modal } from 'components';
-import { media, transitions } from 'helpers/style-utils';
+import { media, shadows, transitions } from 'helpers/style-utils';
 
-import PersonIcon from 'react-icons/lib/md/person';
 
 const Wrapper = styled.div`
   width: 300px;
-
+  background: white;
+  border-radius: 12px;
+  box-shadow: ${shadows.xl};
+  overflow: hidden;
+  
   ${media.mobile`
     width: calc(100vw - 2rem);
   `}
@@ -19,6 +22,7 @@ const Wrapper = styled.div`
 const TitleWrapper = styled.div`
   padding-left: 1rem;
   line-height: 3rem;
+  border-radius: 12px 12px 0 0;
 
   font-size: 1.2rem;
 
@@ -39,6 +43,7 @@ const ContentWrapper = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
+  padding: 0.5rem;
   background-color: ${oc.gray[2]};
 `;
 
@@ -91,26 +96,26 @@ const Logout = ({ visible, onHide, onLogout }) => (
   <Modal 
     visible={visible} 
     onOutside={onHide} 
-    transitionEnter={`${transitions.slideDown} .5s ease-in-out`}
-    transitionLeave={`${transitions.slideUp} .5s ease-in-out`}
-    transitionEnterTimeout={500}
-    transitionLeaveTimeout={500}>
+    transitionEnter={`${transitions.fadeInUp} 180ms cubic-bezier(0.16, 1, 0.3, 1)`}
+    transitionLeave={`${transitions.fadeOutDown} 180ms cubic-bezier(0.16, 1, 0.3, 1)`}
+    transitionEnterTimeout={180}
+    transitionLeaveTimeout={180}>
     <Wrapper>
       <TitleWrapper>
-        Logout
+        Sair
       </TitleWrapper>
       <ContentWrapper>
-        Are you sure you want to logout?
+        Tem certeza que deseja sair?
       </ContentWrapper>
       <ButtonWrapper>
-        <YesButton
-          onClick={onLogout}>
-          Yes
-        </YesButton>
         <NoButton 
           onClick={onHide}>
-          No
+          Não
         </NoButton>
+         <YesButton
+          onClick={onLogout}>
+          Sim
+        </YesButton>
       </ButtonWrapper>
     </Wrapper>
   </Modal>

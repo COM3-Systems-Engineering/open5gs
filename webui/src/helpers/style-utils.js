@@ -1,4 +1,4 @@
-import {css, keyframes} from 'styled-components';
+import { css, keyframes } from 'styled-components';
 
 export const media = ({
   desktop: (...args) => css`
@@ -21,47 +21,43 @@ export const media = ({
 });
 
 export const transitions = {
-  slideDown: keyframes`
-    0% {
+  fadeInUp: keyframes`
+    from {
       opacity: 0;
-      transform: translateY(-100vh);
+      transform: translateY(8px);
     }
-    75% {
+    to {
       opacity: 1;
-      transform: translateY(50px);
-    }
-    100% {
-      transform: translateY(0px);
+      transform: translateY(0);
     }
   `,
-  slideUp: keyframes`
-    0% {
-      transform: translateY(0px);
+  fadeOutDown: keyframes`
+    from {
       opacity: 1;
+      transform: translateY(0);
     }
-    25% {
-      opacity: 1;
-      transform: translateY(50px);
-    }
-    100% {
+    to {
       opacity: 0;
-      transform: translateY(-100vh);
+      transform: translateY(8px);
     }
   `,
-  stretchOut: keyframes`
-    0% {
-      transform: scale(0.25,0.25);
-    }
-    100% {
-      transform: scale(1,1);
-    }
-  `,
-  shrinkIn: keyframes`
-    0% {
-      transform: scale(1, 1);
-    }
-    100% {
-      transform: scale(0.25,0.25);
-    }
-  `
 }
+
+export const shadows = {
+  sm: `
+    0 1px 3px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.06)
+  `,
+  md: `
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.06)
+  `,
+  lg: `
+    0 10px 15px rgba(0, 0, 0, 0.1),
+    0 4px 6px rgba(0, 0, 0, 0.05)
+  `,
+  xl: `
+    0 20px 25px rgba(0, 0, 0, 0.1),
+    0 10px 10px rgba(0, 0, 0, 0.04)
+  `,
+};

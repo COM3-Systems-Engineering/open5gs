@@ -114,7 +114,7 @@ export default class Session {
           resolve(true)
         }
       ).catch(
-        error => reject(Error('Incorrect username or password.'))
+        error => reject(Error('Usuário ou senha incorretos.'))
       )
     })
   }

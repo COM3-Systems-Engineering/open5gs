@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
-import { media } from 'helpers/style-utils';
+import { media, shadows } from 'helpers/style-utils';
 import oc from 'open-color';
 import styled from 'styled-components';
 
@@ -11,12 +11,13 @@ import CloseIcon from 'react-icons/lib/md/close';
 const Wrapper = styled.div`
   position: fixed;
   background: white;
+  overflow: hidden;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  border: 1px solid ${oc.gray[4]};
   border-radius: 12px;
+  box-shadow: ${shadows.xl};
 
   width: ${props => props.width};
   ${media.mobile`
@@ -85,7 +86,6 @@ const Thumbnail = styled.div`
   position: relative;
   justify-content: center;
   padding: 3rem 0;
-  border-radius: 12px;
 
   background: white;
 `;
@@ -93,8 +93,7 @@ const Thumbnail = styled.div`
 const Form = styled.div`
   padding: 1rem;
 
-  background: ${oc.gray[0]};
-  border-radius: 12px;
+  background: ${oc.gray[1]};
 `;
 
 const InputWrapper = styled.div`
@@ -102,7 +101,7 @@ const InputWrapper = styled.div`
 `;
 
 const Title = styled.div`
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.1rem;
   text-align: left;
   font-size: 1rem;
   font-weight: bold;
@@ -116,6 +115,7 @@ const Input = styled.input`
   width: 100%;
   border: 1px solid ${oc.gray[2]};
   border-radius: 6px;
+  box-shadow: ${shadows.sm};
 
   font-size: 1rem;
   line-height: 1.5rem;
@@ -164,6 +164,7 @@ const Button = styled.button`
 
   width: 100%;
   border-radius: 12px;
+  box-shadow: ${shadows.sm};
 
   font-weight: 500;
   font-size: 1.2rem;
@@ -174,7 +175,7 @@ const Button = styled.button`
 
   color: white;
   background: ${props => oc[props.color][7]};
-  border: 1px solid ${props => oc[props.color][10]};
+  border: none;
   outline: none;
   cursor: pointer;
 
@@ -210,10 +211,7 @@ const Login = ({
       <title>COM3 Open5gs - Entrar</title>
     </Head>
     <Wrapper id='nprogress-base-login' width={width}>
-      <ErrorBar
-        visible={error !== null}
-        message={error && error.message}
-        onClose={onErrorReset} />
+
       <Thumbnail>
         <Logo>
           <svg xmlns="http://www.w3.org/2000/svg" width="170" height="38" viewBox="0 0 170 38" fill="none">
@@ -266,6 +264,10 @@ const Login = ({
           <Icon><ArrowForward /></Icon>
         </Button>
       </Form>
+      <ErrorBar
+        visible={error !== null}
+        message={error && error.message}
+        onClose={onErrorReset} />
     </Wrapper>
   </div>
 );

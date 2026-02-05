@@ -1,22 +1,53 @@
 import { Component } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+import { shadows } from 'helpers/style-utils';
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+  position: relative;
   margin-right: 1rem;
 `;
 
-const LangButton = styled.div`
+const Trigger = styled.button`
   cursor: pointer;
-  padding: 0.5rem;
-  margin: 0 0.2rem;
-  font-weight: ${p => p.active ? 'bold' : 'normal'};
-  color: ${p => p.active ? p.theme.primary : p.theme.onSurface};
-  border-bottom: ${p => p.active ? `2px solid ${p.theme.primary}` : '2px solid transparent'};
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid ${p => p.theme.outline || '#e5e7eb'};
+  background: ${p => p.theme.surface || '#fff'};
+  color: ${p => p.theme.onSurface};
+  box-shadow: ${shadows.sm};
+`;
+
+const fadeIn = keyframes`
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+`;
+
+const Dropdown = styled.div`
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 110px;
+  border-radius: 12px;
+  background: ${p => p.theme.surface || '#fff'};
+  border: 1px solid ${p => p.theme.outline || '#e5e7eb'};
+  box-shadow: ${shadows.xl};
+  padding: 0.25rem;
+  z-index: 1000;
+  animation: ${fadeIn} 0.15s ease-out;
+`;
+
+const Item = styled.div`
+  padding: 0.5rem 0.6rem;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  background: ${p => p.theme.surface};
+  color: ${p => p.theme.onSurface};
 
   &:hover {
-    color: ${p => p.theme.primary};
+    background: ${p => p.theme.surfaceContainerHigh};
   }
 `;
 
@@ -29,72 +60,104 @@ const languages = [
 class LanguageSwitcher extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      currentLang: 'en'
+      currentLang: 'en',
+      open: false,
     };
+
+    this.wrapperRef = null;
+
+    this.loadLanguage = this.loadLanguage.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+    this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.changeLanguage = this.changeLanguage.bind(this);
   }
 
   componentDidMount() {
     this.loadLanguage();
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
-  loadLanguage = () => {
-    // Basic cookie parsing to find Googtrans
-    // Format is typically /source/target or /auto/target
-    const cookies = document.cookie.split(';');
-    let lang = 'en'; // Default
-    
-    for(let i = 0; i < cookies.length; i++) {
-        let c = cookies[i].trim();
-        if (c.indexOf('googtrans=') == 0) {
-            let val = c.substring('googtrans='.length, c.length);
-            // val is like /en/es
-            let parts = val.split('/');
-            if (parts.length > 0) {
-               lang = parts[parts.length - 1];
-            }
-        }
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({ open: false });
     }
-    
+  }
+
+  toggleDropdown() {
+    this.setState({ open: !this.state.open });
+  }
+
+  loadLanguage() {
+    var cookies = document.cookie.split(';');
+    var lang = 'en';
+
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('googtrans=') === 0) {
+        var val = c.substring('googtrans='.length);
+        var parts = val.split('/');
+        if (parts.length > 0) {
+          lang = parts[parts.length - 1];
+        }
+      }
+    }
+
     this.setState({ currentLang: lang });
   }
 
-  changeLanguage = (langCode) => {
-    // Set cookie and reload
-    // Google Translate expects cookie "googtrans" with value "/source/target"
-    // We can use "/auto/target" to let it auto-detect source
-    
-    const domain = window.location.hostname === 'localhost' ? '' : `domain=.${window.location.hostname};`;
-    
-    // Clear existing cookie just in case
-    document.cookie = `googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; ${domain}`;
-    
+  changeLanguage(langCode) {
+    var domain =
+      window.location.hostname === 'localhost'
+        ? ''
+        : 'domain=.' + window.location.hostname + ';';
+
+    document.cookie =
+      'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; ' +
+      domain;
+
     if (langCode !== 'en') {
-        document.cookie = `googtrans=/auto/${langCode}; path=/; ${domain}`;
-        document.cookie = `googtrans=/auto/${langCode}; path=/;`; // Fallback for localhost
+      document.cookie = 'googtrans=/auto/' + langCode + '; path=/; ' + domain;
+      document.cookie = 'googtrans=/auto/' + langCode + '; path=/;';
     } else {
-        // For English, we effectively want "no translation" or translate to 'en'
-         document.cookie = `googtrans=/auto/en; path=/; ${domain}`;
+      document.cookie = 'googtrans=/auto/en; path=/; ' + domain;
     }
 
-    // Force reload
     window.location.reload();
   }
 
   render() {
-    const { currentLang } = this.state;
+    var currentLang = this.state.currentLang;
+    var open = this.state.open;
+
+    var activeLang = languages.find(function (l) {
+      return l.code === currentLang;
+    });
 
     return (
-      <Wrapper>
-        {languages.map(lang => (
-            <LangButton 
-                key={lang.code} 
+      <Wrapper ref={ref => (this.wrapperRef = ref)}>
+        <Trigger onClick={this.toggleDropdown}>
+          {(activeLang && activeLang.label) || 'EN'} ▾
+        </Trigger>
+
+        {open && (
+          <Dropdown>
+            {languages.map(lang => (
+              <Item
+                key={lang.code}
                 active={currentLang === lang.code}
                 onClick={() => this.changeLanguage(lang.code)}
-            >
+              >
                 {lang.label}
-            </LangButton>
-        ))}
+              </Item>
+            ))}
+          </Dropdown>
+        )}
       </Wrapper>
     );
   }

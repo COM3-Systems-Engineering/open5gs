@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
-
+import { shadows } from 'helpers/style-utils';
 import AddIcon from 'react-icons/lib/md/add';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   border: 1px solid ${p => p.theme.outline};
   color: ${p => p.theme.onPrimary};
   background: ${p => p.theme.primary};
+  box-shadow: ${shadows.md};
 
   border-radius: 2rem;
   font-size: 2rem;
@@ -28,6 +29,7 @@ const Wrapper = styled.div`
   &:hover {
   transform: translateY(-2px);
     filter: brightness(1.2);
+    box-shadow: ${shadows.xl};
   }
 `;
 

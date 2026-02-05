@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { media } from 'helpers/style-utils';
+import { media, shadows } from 'helpers/style-utils';
 import styled from 'styled-components';
 
 import Item from './Item';
@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   border: 1px solid ${p => p.theme.outline};
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: ${shadows.sm};
   
   ${media.mobile`
     margin: 0.5rem 0.25rem;

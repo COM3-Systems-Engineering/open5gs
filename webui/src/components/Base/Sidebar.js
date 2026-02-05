@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 
-import { media } from 'helpers/style-utils';
+import { media, shadows } from 'helpers/style-utils';
 import styled from 'styled-components';
 
 import ProfileIcon from 'react-icons/lib/md/content-copy';
 import SubscriberIcon from 'react-icons/lib/md/person-add';
 import AccountIcon from 'react-icons/lib/md/vpn-key';
+
 
 const Menu = styled.div`
   display: block;
@@ -15,6 +16,7 @@ const Menu = styled.div`
 
   position: relative;
   z-index: 1;
+  
 
   ${media.mobile`
     position: absolute;
@@ -27,25 +29,27 @@ const Menu = styled.div`
 
   background-color: ${p => p.theme.surfaceContainer};
   border-right: 1px solid ${p => p.theme.surfaceContainerHighest};
+  padding: ${p => p.visible ? '0.5rem' : '0'};
 `;
 
 const StyledItem = styled.div`
   display: flex;
   align-items: center;
-  padding : 1rem;
+  padding : 0.5rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
 
   transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
 
   cursor: pointer;
-  color: ${p => p.active ? p.theme.onSurface : p.theme.onSurface};
-  background: ${p => p.active ? p.theme.surfaceContainerHigh : p.theme.surfaceContainer};
-
-  border-left: ${p => p.active ? `3px solid ${p.theme.primary}` :
-    `3px solid ${p.theme.surfaceContainerHigh}`};
+  color: ${p => p.active ? p.theme.onPrimary : p.theme.onSurface};
+  background: ${p => p.active ? p.theme.primary : p.theme.surfaceContainer};
 
   &:hover {
-    background: ${p => p.active ? p.theme.surfaceContainerHigh : p.theme.surfaceContainerHigh};
+    background: ${p => p.active ? p.theme.primaryVariant : p.theme.surfaceContainerHigh};
   }
+
+  box-shadow: ${p => p.active ? shadows.sm : 'none'};
 `;
 
 const Icon = styled.div`
@@ -55,8 +59,8 @@ const Icon = styled.div`
 `;
 
 const Title = styled.div`
-  padding-left: 2rem;
-  font-size: 1rem;
+  padding-left: 1rem;
+  font-size: 0.8rem;
 `;
 
 const Item = ({ children, selected, name, onSelect }) => (

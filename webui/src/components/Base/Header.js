@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { CircleIcon, Tooltip } from 'components';
+import { shadows } from 'helpers/style-utils';
 import MoonIcon from 'react-icons/lib/md/brightness-3';
 import SunIcon from 'react-icons/lib/md/brightness-5';
 import MenuIcon from 'react-icons/lib/md/menu';
@@ -48,10 +49,16 @@ const Thumbnail = styled.div`
 const ToggleBtn = styled.div`
   cursor: pointer;
   font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: 1px solid ${p => p.theme.outline};
+  background: ${p => p.theme.surface};
+  
   margin-right: 1rem;
   display: flex;
   align-items: center;
   color: ${p => p.theme.onSurface};
+  box-shadow: ${shadows.sm};
 `;
 
 const propTypes = {
@@ -71,7 +78,7 @@ const Header = ({ onSidebarToggle, onLogoutRequest, onToggleTheme, currentTheme 
     </Title>
     <LanguageSwitcher />
     <ToggleBtn onClick={onToggleTheme}>
-       {currentTheme === 'light' ? <MoonIcon/> : <SunIcon/>}
+       {currentTheme === 'light' ? <MoonIcon size="1rem"/> : <SunIcon size="1rem"/>}
     </ToggleBtn>
     <div style={{ width: '1rem' }} />
     <Thumbnail onClick={onLogoutRequest}>

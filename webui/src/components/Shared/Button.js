@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 
+import { shadows } from 'helpers/style-utils';
 import oc from 'open-color';
 import styled from 'styled-components';
 
@@ -50,9 +51,6 @@ function getHoverColor(props) {
 function getColor(props) {
   if (props.primary) return props.theme.surface;
   if (props.secondary) return props.theme.surfaceContainerHigh;
-  if (props.info) return props.theme.info;
-  if (props.danger) return props.theme.danger;
-  if (props.success) return props.theme.success;
   return props.theme.surface; // default
 }
 
@@ -68,7 +66,7 @@ const ButtonWrapper = styled.button`
   border-radius: 10px;
   border-color: ${props => props.theme.outline};
   color: ${props => props.primary || props.clear ? getColor(props) : props.theme.onSurface };
-  background: ${props => props.primary ? props.theme.primary : getColor(props) };
+  background: ${props => props.primary || props.clear ? props.theme.primary : getColor(props) };
 
   ${props => props.disabled && 'opacity: 0.5; cursor: not-allowed;'};
   ${props => props.small && 'padding: 4px 8px;'}
@@ -77,13 +75,16 @@ const ButtonWrapper = styled.button`
   ${props => props.large && 'font-size: 1.5rem;'}
 
   &:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.1);
   }
 
+
   &:active {
-    filter: brightness(0.8);
+    filter: brightness(0.9);
   }
     border: 1px solid ${props => props.theme.outline};
+    drop-shadow: ${shadows.sm}
+    overflow: hidden;
 `;
 
 const ButtonContent = styled.div`

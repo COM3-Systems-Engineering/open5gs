@@ -18,8 +18,6 @@ const Wrapper = styled.div`
   width: ${p => p.width || `1050px`};
   background: ${p => p.theme.surfaceContainerHigh};
   color: ${p => p.theme.onSurface};
-  border-radius: 8px;
-  border: 1px solid ${p => p.theme.outline};
   overflow: hidden;
 
   ${media.mobile`

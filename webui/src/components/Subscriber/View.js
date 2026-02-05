@@ -1,20 +1,16 @@
-import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
+import { media, shadows } from 'helpers/style-utils';
 import oc from 'open-color';
-import { media } from 'helpers/style-utils';
+import styled from 'styled-components';
 
-import EditIcon from 'react-icons/lib/md/edit';
-import DeleteIcon from 'react-icons/lib/md/delete';
-import CloseIcon from 'react-icons/lib/md/close';
 
-import PhoneIcon from 'react-icons/lib/md/phone';
-import SecurityIcon from 'react-icons/lib/md/security';
-import MmeIcon from 'react-icons/lib/md/router';
 import PdnIcon from 'react-icons/lib/md/cast';
 import KeyboardControlIcon from 'react-icons/lib/md/keyboard-control';
+import PhoneIcon from 'react-icons/lib/md/phone';
+import MmeIcon from 'react-icons/lib/md/router';
+import SecurityIcon from 'react-icons/lib/md/security';
 
-import { Modal, Tooltip, Dimmed } from 'components';
+import { Dimmed, Modal } from 'components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,19 +22,19 @@ const Wrapper = styled.div`
     width: calc(100vw - 4rem);
   `}
 
-  background: white;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  background: ${props => props.theme.surface};
+  box-shadow: ${shadows.xl}
 `
 
 const Header = styled.div`
   position: relative;
   display: flex;
 
-  background: ${oc.gray[1]};
+  background: ${props => props.theme.surfaceContainer};
 
   .title {
     padding: 1.5rem;
-    color: ${oc.gray[8]};
+    color: ${props => props.theme.onSurface};
     font-size: 1.5rem;
   }
 
@@ -62,18 +58,18 @@ const CircleButton = styled.div`
   justify-content: center;
   margin: 1px;
 
-  color: ${oc.gray[6]};
+  color: ${props => props.theme.onSurface};
 
   border-radius: 1rem;
   font-size: 1.5rem;
 
   &:hover {
-    color: ${oc.indigo[6]};
+    color: ${props => props.theme.primary};
   }
 
   &.delete {
     &:hover {
-      color: ${oc.pink[6]};
+      color: ${props => props.theme.error};
     }
   }
 `
@@ -87,14 +83,14 @@ const Body = styled.div`
     height: calc(100vh - 16rem);
   `}
 
-  overflow: scroll;
+  overflow: auto;
 `
 
 const Subscriber = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0, auto;
-  color: ${oc.gray[9]};
+  color: ${props => props.theme.onSurface};
 
   .header {
     margin: 12px;
@@ -116,7 +112,7 @@ const Subscriber = styled.div`
       width: 80px;
       text-align: center;
       font-size: 18px;
-      color: ${oc.gray[6]};
+      color: ${props => props.theme.onSurface};
     }
 
     .right {
@@ -137,7 +133,7 @@ const Pdn = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  color: ${oc.gray[9]};
+  color: ${props => props.theme.onSurface};
 
   .header {
     margin: 12px;
@@ -188,17 +184,6 @@ const View = ({ visible, disableOnClickOutside, subscriber, onEdit, onDelete, on
         <Wrapper>
           <Header>
             <div className="title">{imsi}</div>
-            <div className="actions">
-              <Tooltip content='Edit' width="60px">
-                <CircleButton onClick={() => onEdit(imsi)}><EditIcon/></CircleButton>
-              </Tooltip>
-              <Tooltip content='Delete' width="60px">
-                <CircleButton className="delete" onClick={() => onDelete(imsi)}><DeleteIcon/></CircleButton>
-              </Tooltip>
-              <Tooltip content='Close' width="60px">
-                <CircleButton className="delete" onClick={onHide}><CloseIcon/></CircleButton>
-              </Tooltip>
-            </div>
           </Header>
           <Body>
             <Subscriber>

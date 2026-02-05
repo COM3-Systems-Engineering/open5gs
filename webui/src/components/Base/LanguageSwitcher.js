@@ -28,7 +28,7 @@ const Dropdown = styled.div`
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
-  min-width: 110px;
+  min-width: 80px;
   border-radius: 12px;
   background: ${p => p.theme.surface || '#fff'};
   border: 1px solid ${p => p.theme.outline || '#e5e7eb'};
@@ -43,18 +43,30 @@ const Item = styled.div`
   font-size: 0.75rem;
   border-radius: 8px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: ${p => p.theme.surface};
   color: ${p => p.theme.onSurface};
+  border: 1px solid ${p => p.active ? p.theme.outline : 'transparent'};
 
   &:hover {
     background: ${p => p.theme.surfaceContainerHigh};
   }
 `;
 
+const FlagIcon = styled.img`
+  width: 20px;
+  height: 15px;
+  margin-left: 8px;
+  vertical-align: middle;
+  border-radius: 2px;
+`;
+
 const languages = [
-  { code: 'en', label: 'EN' },
-  { code: 'pt', label: 'PT' },
-  { code: 'es', label: 'ES' },
+  { code: 'en', label: 'EN', icon: 'us' },
+  { code: 'pt', label: 'PT', icon: 'br' },
+  { code: 'es', label: 'ES', icon: 'es' },
 ];
 
 class LanguageSwitcher extends Component {
@@ -153,7 +165,8 @@ class LanguageSwitcher extends Component {
                 active={currentLang === lang.code}
                 onClick={() => this.changeLanguage(lang.code)}
               >
-                {lang.label}
+                <span>{lang.label}</span>
+                <FlagIcon src={'../../../static/flag-' + lang.icon + '.png'} alt={lang.code} />
               </Item>
             ))}
           </Dropdown>

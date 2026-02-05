@@ -5,6 +5,9 @@ body.theme-light {
     --input-bg: rgb(255 255 255);
     --input-color: rgb(26 27 33);
     --input-border: rgb(117 118 128); /* outline */
+    --input-disabled-bg: rgb(245 245 247);
+    --input-disabled-color: rgb(148 149 157);
+    --input-disabled-border: rgb(225 225 230);
     --scrollbar-track: rgb(250 248 255);
     --scrollbar-thumb: rgb(198 198 208); /* outlineVariant */
     --scrollbar-thumb-hover: rgb(117 118 128);
@@ -17,6 +20,9 @@ body.theme-dark {
     --input-bg: rgb(40 41 47); /* surfaceContainerHigh */
     --input-color: rgb(226 225 236);
     --input-border: rgb(51 52 58); /* outline */
+    --input-disabled-bg: rgb(35 36 42);
+    --input-disabled-color: rgb(109 110 118);
+    --input-disabled-border: rgb(51 52 58);
     --scrollbar-track: rgb(26 27 33);
     --scrollbar-thumb: rgb(69 70 79); /* outlineVariant */
     --scrollbar-thumb-hover: rgb(51 52 58);
@@ -41,6 +47,23 @@ body {
     background-color: var(--input-bg);
     color: var(--input-color);
     border-color: var(--scrollbar-thumb-hover); /* darken border on focus */
+}
+
+/* Disabled state styles */
+.form-control:disabled,
+.form-control[readonly] {
+    background-color: var(--input-disabled-bg);
+    color: var(--input-disabled-color);
+    border-color: var(--input-disabled-border);
+    cursor: not-allowed;
+    opacity: 1; /* Override Bootstrap default opacity */
+}
+
+/* Disabled state for focused (when using Tab navigation) */
+.form-control:disabled:focus,
+.form-control[readonly]:focus {
+    border-color: var(--input-disabled-border);
+    box-shadow: none;
 }
 
 /* Webkit Scrollbar */

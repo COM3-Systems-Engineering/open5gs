@@ -1,14 +1,13 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-import styled from 'styled-components';
 import oc from 'open-color';
-import { media } from 'helpers/style-utils';
+import styled from 'styled-components';
 
-import EditIcon from 'react-icons/lib/md/edit';
 import DeleteIcon from 'react-icons/lib/md/delete';
+import EditIcon from 'react-icons/lib/md/edit';
 
-import { Tooltip, Spinner } from 'components';
+import { Spinner, Tooltip } from 'components';
 
 const Card = styled.div`
   position: relative;
@@ -33,7 +32,7 @@ const Card = styled.div`
   }
 
   &:hover {
-    background: ${oc.gray[1]};
+    background: ${p => p.theme.surfaceContainerHigh};
 
     .actions {
       ${p => p.disabled ? 'opacity: 0;' : 'opacity: 1;'};

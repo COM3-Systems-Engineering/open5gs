@@ -1,14 +1,14 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
 
-import styled from 'styled-components';
+import { media, shadows } from 'helpers/style-utils';
 import oc from 'open-color';
-import { media } from 'helpers/style-utils';
+import styled from 'styled-components';
 
-import EditIcon from 'react-icons/lib/md/edit';
 import DeleteIcon from 'react-icons/lib/md/delete';
+import EditIcon from 'react-icons/lib/md/edit';
 
-import { Tooltip, Spinner } from 'components';
+import { Spinner, Tooltip } from 'components';
 
 const Sizer = styled.div`
   display: inline-block;
@@ -30,8 +30,8 @@ const Card = styled.div`
   position: relative;
   display: flex;
 
-  background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  background: ${props => props.theme.surfaceContainer};
+  box-shadow: ${shadows.sm}
 
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
   cursor: pointer;
@@ -52,12 +52,15 @@ const Card = styled.div`
   }
 
   &:hover {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    box-shadow: ${shadows.md};
 
     .actions {
       ${p => p.disabled ? 'opacity: 0;' : 'opacity: 1;'};
     }
   }
+
+  border-radius: 10px;
+  border: 1px solid ${props => props.theme.outline};
 `;
 
 const CircleButton = styled.div`
@@ -68,8 +71,7 @@ const CircleButton = styled.div`
   justify-content: center;
   margin: 1px;
 
-  background: white;
-  color: ${oc.gray[6]};
+  color: ${props => props.theme.onSurface};
 
   border-radius: 1rem;
   font-size: 1.5rem;
@@ -87,8 +89,8 @@ const CircleButton = styled.div`
 
 const Imsi = styled.div`
   padding-left: 1rem;
-  color: ${oc.gray[8]};
-  font-size: 1.25rem;
+  color: ${props => props.theme.onSurface};
+  font-size: 14px;
   line-height : 3rem;
 `;
 

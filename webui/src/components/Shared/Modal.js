@@ -24,6 +24,9 @@ const Wrapper = styled.div`
     animation-fill-mode: forwards;
   }
 
+  border-radius: 1rem;
+  border: 1px solid ${p => p.theme.outline};
+  overflow: hidden;
 `;
 
 const Backdrop = styled.div`
@@ -85,20 +88,21 @@ class Modal extends Component {
     }
   }
   
-  render() {
+ render() {
+  const { 
+    visible, 
+    children, 
+    zindex,
+    transitionEnter,
+    transitionLeave,
+    transitionEnterTimeout,
+    transitionLeaveTimeout
+  } = this.props;
 
-    const { 
-      visible, 
-      children, 
-      zindex,
-      transitionEnter,
-      transitionLeave,
-      transitionEnterTimeout,
-      transitionLeaveTimeout
-    } = this.props;
+  if (!visible) return null;
 
-    return (
-      <div>
+  return (
+    <div>
       <Backdrop
         visible={visible}
         zindex={Number(zindex)}
@@ -119,9 +123,9 @@ class Modal extends Component {
           }
         </CSSTransitionGroup>
       </Wrapper>
-      </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 export default onClickOutside(Modal);

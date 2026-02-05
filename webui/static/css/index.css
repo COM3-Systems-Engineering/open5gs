@@ -30,6 +30,21 @@ html, body {
   background: white;
 }
 
+@import url('./translate_overrides.css');
+
 * {
   box-sizing: inherit;
 }
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-te-menu-frame,
+.VIpgJd-ZVi9od-ORHb,
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+body {
+    top: 0px !important; 
+    }

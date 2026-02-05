@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import styled from 'styled-components';
-import oc from 'open-color';
 
 import AddIcon from 'react-icons/lib/md/add';
 
@@ -12,9 +11,9 @@ const Wrapper = styled.div`
   width: 4rem;
   height: 4rem;
 
-  border: 1px solid ${oc.pink[9]};
-  color: white;
-  background: ${oc.pink[8]};
+  border: 1px solid ${p => p.theme.outline};
+  color: ${p => p.theme.onPrimary};
+  background: ${p => p.theme.primary};
 
   border-radius: 2rem;
   font-size: 2rem;
@@ -27,8 +26,8 @@ const Wrapper = styled.div`
   transition: all .15s;
 
   &:hover {
-    transform: translateY(-0.5rem); 
-    background: ${oc.pink[6]}; 
+  transform: translateY(-2px);
+    filter: brightness(1.2);
   }
 `;
 

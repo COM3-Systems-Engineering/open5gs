@@ -1,45 +1,29 @@
-import Layout from './Base/Layout';
 import Header from './Base/Header';
-import Sidebar from './Base/Sidebar';
+import Layout from './Base/Layout';
 import Login from './Base/Login';
 import Logout from './Base/Logout';
+import Sidebar from './Base/Sidebar';
 
-import Modal from './Shared/Modal';
-import CircleIcon from './Shared/CircleIcon';
-import Dimmed from './Shared/Dimmed';
-import Spinner from './Shared/Spinner';
-import FloatingButton from './Shared/FloatingButton';
-import Tooltip from './Shared/Tooltip';
 import Blank from './Shared/Blank';
 import Button from './Shared/Button';
-import withRipple from './Shared/withRipple';
-import Form from './Shared/Form';
+import CircleIcon from './Shared/CircleIcon';
 import Confirm from './Shared/Confirm';
+import Dimmed from './Shared/Dimmed';
+import FloatingButton from './Shared/FloatingButton';
+import Form from './Shared/Form';
+import Modal from './Shared/Modal';
+import Spinner from './Shared/Spinner';
+import Tooltip from './Shared/Tooltip';
+import withRipple from './Shared/withRipple';
 
-import * as Subscriber from './Subscriber';
-import * as Profile from './Profile';
 import * as Account from './Account';
+import LanguageSwitcher from './Base/LanguageSwitcher';
+import * as Profile from './Profile';
+import * as Subscriber from './Subscriber';
 
 export {
-  Layout,
-  Header,
-  Sidebar,
-  Login,
-  Logout,
+  Account, Blank,
+  Button, CircleIcon, Confirm, Dimmed, FloatingButton, Form, Header, LanguageSwitcher, Layout, Login,
+  Logout, Modal, Profile, Sidebar, Spinner, Subscriber, Tooltip, withRipple
+};
 
-  Modal,
-  CircleIcon,
-  Dimmed,
-  Spinner,
-  FloatingButton,
-  Tooltip,
-  Blank,
-  Button,
-  withRipple,
-  Form,
-  Confirm,
-
-  Subscriber,
-  Profile,
-  Account
-}

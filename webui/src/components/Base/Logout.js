@@ -103,19 +103,19 @@ const Logout = ({ visible, onHide, onLogout }) => (
     transitionLeaveTimeout={180}>
     <Wrapper>
       <TitleWrapper>
-        Sair
+        Logout
       </TitleWrapper>
       <ContentWrapper>
-        Tem certeza que deseja sair?
+        Are you sure you want to logout?
       </ContentWrapper>
       <ButtonWrapper>
         <NoButton 
           onClick={onHide}>
-          Cancelar
+          Cancel
         </NoButton>
          <YesButton
           onClick={onLogout}>
-          Sair
+          Exit
         </YesButton>
       </ButtonWrapper>
     </Wrapper>

@@ -7,6 +7,7 @@ import MoonIcon from 'react-icons/lib/md/brightness-3';
 import SunIcon from 'react-icons/lib/md/brightness-5';
 import MenuIcon from 'react-icons/lib/md/menu';
 import PersonIcon from 'react-icons/lib/md/person';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Wrapper = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ const Header = ({ onSidebarToggle, onLogoutRequest, onToggleTheme, currentTheme 
     <Title>
       COM3 Open5GS
     </Title>
+    <LanguageSwitcher />
     <ToggleBtn onClick={onToggleTheme}>
        {currentTheme === 'light' ? <MoonIcon/> : <SunIcon/>}
     </ToggleBtn>

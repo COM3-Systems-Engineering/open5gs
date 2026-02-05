@@ -231,13 +231,10 @@ const Login = ({
             <path d="M134.342 19.1966C134.342 22.2302 131.946 25.1348 126.568 25.1348C124.096 25.1348 121.472 24.5235 119.637 23.3769L121.472 19.58C122.899 20.5482 124.734 21.057 126.416 21.057C128.125 21.057 129.246 20.3926 129.246 19.1966C129.246 18.1259 128.456 17.4652 126.519 17.4652H124.403V14.2797L127.59 10.8398H120.556V6.94043H133.453V10.0994L129.758 14.0747C132.762 14.7125 134.342 16.6489 134.342 19.1966Z" fill="#143F6A"></path>
           </svg>
         </Logo>
-        <LogoDescription>
-          <p>Systems Engineering</p>
-        </LogoDescription>
       </Thumbnail>
       <Form>
         <InputWrapper>
-          <Title>Nome de usuário</Title>
+          <Title>Username</Title>
           <Input
             name="username"
             type="text"
@@ -249,7 +246,7 @@ const Login = ({
           />
         </InputWrapper>
         <InputWrapper>
-          <Title>Senha</Title>
+          <Title>Password</Title>
           <Input
             name="password"
             type="password"
@@ -260,7 +257,7 @@ const Login = ({
           />
         </InputWrapper>
         <Button color='blue' onClick={onSubmit}>
-          Entrar
+          Login
           <Icon><ArrowForward /></Icon>
         </Button>
       </Form>

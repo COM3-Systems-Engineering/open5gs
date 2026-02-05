@@ -26,8 +26,19 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" type="text/css" href="/static/css/theme.css" />
           <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
           {styleTags}
+          <script dangerouslySetInnerHTML={{ __html: `
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({
+                pageLanguage: 'en', 
+                includedLanguages: 'en,pt,es', 
+                autoDisplay: false
+              }, 'google_translate_element');
+            }
+          `}} />
+          <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         </Head>
         <body>
+          <div id="google_translate_element" style={{ display: 'none' }}></div>
           <div className='root'>
             {main}
           </div>

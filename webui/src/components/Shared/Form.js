@@ -19,6 +19,7 @@ const Wrapper = styled.div`
   background: ${p => p.theme.surfaceContainerHigh};
   color: ${p => p.theme.onSurface};
   border-radius: 8px;
+  border: 1px solid ${p => p.theme.outline};
   overflow: hidden;
 
   ${media.mobile`
@@ -34,8 +35,9 @@ const Header = styled.div`
   justify-content: flex-start;
 
   padding: 1rem;  
-  font-size: 1.2rem;
-  background: ${p => p.theme.surfaceContainerHigh};
+  font-size: 1rem;
+    background: ${p => p.theme.surfaceContainerLowest};
+
   color: ${p => p.theme.onSurface};
 `
 
@@ -57,6 +59,7 @@ const Body = styled.div`
 const Footer = styled.div`
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
 
   padding: 1rem;
     background: ${p => p.theme.surfaceContainerHigh};
@@ -296,10 +299,10 @@ class Form extends Component {
               }
             </Body>
             <Footer>
-              <Button clear disabled={disabled} onClick={handleClose}>
+              <Button secondary disabled={disabled} onClick={handleClose}>
                 CANCEL
               </Button>
-              <Button clear disabled={disabled || disableSubmitButton} onClick={handleSubmitButton}>
+              <Button primary disabled={disabled || disableSubmitButton} onClick={handleSubmitButton}>
                 SAVE
               </Button>
             </Footer>
@@ -309,8 +312,8 @@ class Form extends Component {
           visible={this.state.confirm} 
           message="You have unsaved changes. Are you sure you want to close?"
           buttons={[
-            { text: "CLOSE", action: handleClose, info:true },
-            { text: "NO", action: () => this.setState({ confirm: false })}
+            { text: "Stay", action: () => this.setState({ confirm: false })},
+            { text: "Close", action: handleClose, primary:true }
           ]}/>
       </div>
     )

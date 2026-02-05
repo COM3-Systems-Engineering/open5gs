@@ -1,8 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
 import oc from 'open-color';
+import styled from 'styled-components';
 
 import withRipple from './withRipple';
 
@@ -38,51 +37,39 @@ function getBgColor(props) {
 }
 
 function getHoverColor(props) {
-  let color = oc.indigo[8];
-  if (props.secondary) color = oc.violet[8];
-  if (props.info) color = oc.gray[8];
-  if (props.danger) color = oc.red[8];
-  if (props.success) color = oc.lime[8];
+  let color = props.theme.primary;
+  if (props.secondary) color = props.theme.surfaceVariant;
+  if (props.info) color = props.theme.info;
+  if (props.danger) color = props.theme.danger;
+  if (props.success) color = props.theme.success;
   if (props.clear) color = 'transparent';
 
   return color;
 }
 
-function getActiveColor(props) {
-  let color = oc.indigo[9];
-  if (props.secondary) color = oc.violet[9];
-  if (props.info) color = oc.gray[9];
-  if (props.danger) color = oc.red[9];
-  if (props.success) color = oc.lime[9];
-
-  return color;
-}
-
 function getColor(props) {
-  if (props.primary) return oc.indigo[7];
-  if (props.secondary) return oc.violet[7];
-  if (props.info) return oc.gray[7];
-  if (props.danger) return oc.red[7];
-  if (props.success) return oc.lime[7];
-  return oc.indigo[7]; // default
+  if (props.primary) return props.theme.surface;
+  if (props.secondary) return props.theme.surfaceContainerHigh;
+  if (props.info) return props.theme.info;
+  if (props.danger) return props.theme.danger;
+  if (props.success) return props.theme.success;
+  return props.theme.surface; // default
 }
 
 const ButtonWrapper = styled.button`
   outline: none;
-  font-size: 1rem;
-  padding: 8px 16px;
-  font-weight: normal;
+  font-size: 14px;
+  padding: 4px 8px;
+  font-weight: 550;
+  
   width: ${props => props.w || 'auto'};
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
   border-style: solid;
   border-width: ${props => props.outline && !props.clear ? '1px' : '0px'};
-  border-radius: 4px;
-  border-color: ${props => getColor(props)};
-  color: ${props => props.outline || props.clear ? getColor(props) : '#fff'};
-  ${props => (!props.outline && !props.clear && !props.flat) &&
-    'box-shadow: 1px 3px 6px rgba(0,0,0,0.1);'
-  }
-  ${props => getBgColor(props)};
+  border-radius: 10px;
+  border-color: ${props => props.theme.outline};
+  color: ${props => props.primary || props.clear ? getColor(props) : props.theme.onSurface };
+  background: ${props => props.primary ? props.theme.primary : getColor(props) };
+
   ${props => props.disabled && 'opacity: 0.5; cursor: not-allowed;'};
   ${props => props.small && 'padding: 4px 8px;'}
   ${props => props.large && 'padding: 12px 20px;'}
@@ -90,14 +77,13 @@ const ButtonWrapper = styled.button`
   ${props => props.large && 'font-size: 1.5rem;'}
 
   &:hover {
-    background: ${props => getHoverColor(props)};
-    ${props => !props.clear && 'color: #fff;'}
-    ${props => !props.disabled && 'cursor: pointer;'}
+    filter: brightness(1.2);
   }
+
   &:active {
-    background: ${props => !props.clear && getActiveColor(props)};
-    color: ${props => props.clear && getActiveColor(props)};
+    filter: brightness(0.8);
   }
+    border: 1px solid ${props => props.theme.outline};
 `;
 
 const ButtonContent = styled.div`

@@ -33,6 +33,7 @@ const Message = styled.div`
 const Buttons = styled.div`
   display: flex;
   justify-content: flex-end;
+  gap: 1rem;
 
   padding: 1rem;
 `
@@ -42,7 +43,8 @@ const Confirm = ({ visible, onOutside, message, buttons }) => {
     .map(button =>
       <Button
         key={button.text}
-        clear={true}
+        primary={button.primary === true}
+        secondary={button.secondary === true}
         danger={button.danger === true} 
         info={button.info === true} 
         onClick={button.action}>

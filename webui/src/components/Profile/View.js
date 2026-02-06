@@ -1,18 +1,15 @@
 
-import { media } from 'helpers/style-utils';
+import { media, shadows } from 'helpers/style-utils';
 import oc from 'open-color';
 import styled from 'styled-components';
 
-import CloseIcon from 'react-icons/lib/md/close';
-import DeleteIcon from 'react-icons/lib/md/delete';
-import EditIcon from 'react-icons/lib/md/edit';
 
 import PdnIcon from 'react-icons/lib/md/cast';
 import KeyboardControlIcon from 'react-icons/lib/md/keyboard-control';
 import PhoneIcon from 'react-icons/lib/md/phone';
 import SecurityIcon from 'react-icons/lib/md/security';
 
-import { Dimmed, Modal, Tooltip } from 'components';
+import { Dimmed, Modal } from 'components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,15 +21,15 @@ const Wrapper = styled.div`
     width: calc(100vw - 4rem);
   `}
 
-  background: white;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  background: ${props => props.theme.surface};
+  box-shadow: ${shadows.xl}
 `
 
 const Header = styled.div`
   position: relative;
   display: flex;
 
-  background: ${oc.gray[1]};
+  background: ${p => p.theme.surfaceContainerHigh};
 
   .title {
     padding: 1.5rem;
@@ -52,30 +49,6 @@ const Header = styled.div`
   }
 `;
 
-const CircleButton = styled.div`
-  height: 2rem;
-  width: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 1px;
-
-  color: ${oc.gray[6]};
-
-  border-radius: 1rem;
-  font-size: 1.5rem;
-
-  &:hover {
-    color: ${oc.indigo[6]};
-  }
-
-  &.delete {
-    &:hover {
-      color: ${oc.pink[6]};
-    }
-  }
-`
-
 const Body = styled.div`
   display: block;
   margin: 0.5rem;
@@ -85,14 +58,14 @@ const Body = styled.div`
     height: calc(100vh - 16rem);
   `}
 
-  overflow: scroll;
+  overflow: auto;
 `
 
 const Profile = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0, auto;
-  color: ${oc.gray[9]};
+  color: ${p => p.theme.onSurface};
 
   .header {
     margin: 12px;
@@ -114,7 +87,7 @@ const Profile = styled.div`
       width: 80px;
       text-align: center;
       font-size: 18px;
-      color: ${oc.gray[6]};
+      color: ${p => p.theme.onSurface};
     }
 
     .right {
@@ -135,7 +108,7 @@ const Pdn = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  color: ${oc.gray[9]};
+  color: ${p => p.theme.onSurface};
 
   .header {
     margin: 12px;
@@ -184,17 +157,6 @@ const View = ({ visible, disableOnClickOutside, profile, onEdit, onDelete, onHid
         <Wrapper>
           <Header>
             <div className="title">{title}</div>
-            <div className="actions">
-              <Tooltip content='Edit' width="60px">
-                <CircleButton onClick={() => onEdit(_id)}><EditIcon/></CircleButton>
-              </Tooltip>
-              <Tooltip content='Delete' width="60px">
-                <CircleButton className="delete" onClick={() => onDelete(_id)}><DeleteIcon/></CircleButton>
-              </Tooltip>
-              <Tooltip content='Close' width="60px">
-                <CircleButton className="delete" onClick={onHide}><CloseIcon/></CircleButton>
-              </Tooltip>
-            </div>
           </Header>
           <Body>
             <Profile>

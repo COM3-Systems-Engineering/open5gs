@@ -78,7 +78,10 @@ const Background = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: #1F2F5D;
+  background-image: url('../../../static/bg-globe.jpg');
+  background-color: #1F2F5D;
+  background-size: cover;
+  background-position: center;
 `;
 
 const Thumbnail = styled.div`

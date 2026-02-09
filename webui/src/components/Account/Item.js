@@ -10,32 +10,20 @@ import { Spinner, Tooltip } from 'components';
 
 const Card = styled.div`
   position: relative;
-  display: flex;
-  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  border-top: 1px solid ${p => p.theme.outline};
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 2rem;
+  width: 100%;
 
   cursor: pointer;
 
   ${p => p.disabled && 'opacity: 0.5; cursor: not-allowed; pointer-events: none;'};
 
-  .actions {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 8rem;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-  }
-
   &:hover {
     background: ${p => p.theme.surfaceContainerHigh};
-
-    .actions {
-      ${p => p.disabled ? 'opacity: 0;' : 'opacity: 1;'};
-    }
   }
 `;
 
@@ -63,23 +51,14 @@ const CircleButton = styled.div`
   }
 `
 
-const Account = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex:1;
-  line-height: 2.5rem;
-  margin : 0 2rem;
+const Username = styled.div`
+    font-size: 1rem;
+    color: ${p => p.theme.onSurfaceVariant};
+`;
 
-  .username {
+const Role = styled.div`
     font-size: 1rem;
-    color: ${oc.gray[8]};
-    width: 320px;
-  }
-  .role {
-    font-size: 1rem;
-    color: ${oc.gray[6]};
-    width: 240px;
-  }
+    color: ${p => p.theme.onSurfaceVariant};
 `;
 
 const SpinnerWrapper = styled.div`
@@ -156,19 +135,31 @@ class Item extends Component {
     } = this.props;
 
     return (
-      <Card disabled={disabled} onClick={handleEdit}>
-        <Account>
-          <div className='username'>{account.username}</div>
-          <div className='role'>{account.roles[0]}</div>
-        </Account>
-        {session.user.username !== account.username &&
-          <div className="actions">
-            <Tooltip content='Delete' width="60px">
-              <CircleButton className="delete" onClick={handleDelete}><DeleteIcon/></CircleButton>
-            </Tooltip>
-          </div>}
-        {spinner && <SpinnerWrapper><Spinner sm/></SpinnerWrapper>}
-      </Card>
+    <Card disabled={disabled} onClick={handleEdit}>
+  <Username>{account.username}</Username>
+
+  <Role>{account.roles[0]}</Role>
+
+  {session.user.username !== account.username ? (
+    <Tooltip content="Delete" width="60px">
+      <CircleButton
+        className="delete"
+        onClick={handleDelete}
+        style={{ justifySelf: 'end' }}
+      >
+        <DeleteIcon />
+      </CircleButton>
+    </Tooltip>
+  ) : (
+    <div style={{ width: '34px', height: '32px', justifySelf: 'end' }}></div>
+  )}
+
+  {spinner && (
+    <SpinnerWrapper>
+      <Spinner sm />
+    </SpinnerWrapper>
+  )}
+</Card>
     )
   }
 }

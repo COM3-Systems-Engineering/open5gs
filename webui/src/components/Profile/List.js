@@ -7,35 +7,40 @@ import Item from './Item';
 
 const Wrapper = styled.div`
   display: block;
-  margin: 2rem;
+  margin: 1rem;
   border: 1px solid ${p => p.theme.outline};
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: ${shadows.sm};
-  
+  min-width: 600px;
+`
+
+const ScrollArea = styled.div`
+  overflow-y: auto;
+  max-height: 600px;
+
   ${media.mobile`
-    margin: 0.5rem 0.25rem;
+    max-height: 400px;
   `}
 `
 
 const Header = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex:1;
-  line-height: 2.5rem;
-  padding : 0.25rem 2.5rem;
-  border-bottom: 1px solid ${p => p.theme.outline};
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 2rem;
+`;
 
-  .title {
+const Title = styled.div`
     font-size: 1rem;
+    opacity: 0.8;
     color: ${p => p.theme.onSurfaceVariant};
-    width: 320px;
-  }
-  .ambr {
+`;
+
+const Ambr = styled.div`
     font-size: 1rem;
+    opacity: 0.8;
     color: ${p => p.theme.onSurfaceVariant};
-    width: 240px;
-  }
 `;
 
 const propTypes = {
@@ -48,7 +53,7 @@ const propTypes = {
 const List = ({ profiles, deletedId, onView, onEdit, onDelete }) => {
   const profileList = profiles
     .map(profile =>
-      <Item 
+      <Item
         key={profile._id}
         profile={profile}
         disabled={deletedId === profile._id}
@@ -59,11 +64,14 @@ const List = ({ profiles, deletedId, onView, onEdit, onDelete }) => {
 
   return (
     <Wrapper>
-    <Header key={"header"}>
-        <div className="title">Title</div>
-        <div className="ambr">Uplink/Downlink</div>
-    </Header>
-    {profileList}
+      <ScrollArea>
+        <Header key={"header"}>
+          <Title>Title</Title>
+          <Ambr>Uplink/Downlink</Ambr>
+          <Ambr style={{ width: '80px', justifySelf: 'end' }}></Ambr>
+        </Header>
+        {profileList}
+      </ScrollArea>
     </Wrapper>
   )
 }

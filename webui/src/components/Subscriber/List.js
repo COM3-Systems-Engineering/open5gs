@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 
-import styled from 'styled-components';
-import oc from 'open-color';
 import { media, transitions } from 'helpers/style-utils';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import styled from 'styled-components';
 
-import { Layout, Blank } from 'components';
 import Item from './Item';
 
 const Wrapper = styled.div`
@@ -13,7 +11,7 @@ const Wrapper = styled.div`
   margin: 1rem 0.5rem;
   
   ${media.mobile`
-    margin: 0.5rem 0.25rem;
+    margin: 1rem;
   `}
 
   .subscriber-enter {

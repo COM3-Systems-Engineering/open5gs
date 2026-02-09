@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { CircleIcon, Tooltip } from 'components';
-import { shadows } from 'helpers/style-utils';
+import { media, shadows } from 'helpers/style-utils';
 import MoonIcon from 'react-icons/lib/md/brightness-3';
 import SunIcon from 'react-icons/lib/md/brightness-5';
 import MenuIcon from 'react-icons/lib/md/menu';
@@ -37,6 +37,11 @@ const Title = styled.div`
 
   font-size: 1.2rem;
   font-family: 'Ubuntu', sans-serif;
+
+    ${media.mobile`
+    visibility: hidden;
+    width: 0;
+  `}
 `;
 
 const Thumbnail = styled.div`

@@ -11,32 +11,20 @@ import { Spinner, Tooltip } from 'components';
 
 const Card = styled.div`
   position: relative;
-  display: flex;
-  padding : 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  border-top: 1px solid ${p => p.theme.outline};
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 2rem;
+  width: 100%;
 
   cursor: pointer;
 
-  ${p => p.disabled && 'opacity: 0.5; cursor: not-allowed; pointer-events: none;'}
-
-  .actions {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 8rem;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-  }
+  ${p => p.disabled && 'opacity: 0.5; cursor: not-allowed; pointer-events: none;'};
 
   &:hover {
     background: ${p => p.theme.surfaceContainerHigh};
-
-    .actions {
-      ${p => p.disabled ? 'opacity: 0;' : 'opacity: 1;'};
-    }
   }
 `;
 
@@ -64,28 +52,14 @@ const CircleButton = styled.div`
   }
 `
 
-const Profile = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex:1;
-  line-height: 2.5rem;
-  margin : 0 2rem;
+const Title = styled.div`
+    font-size: 1rem;
+    color: ${p => p.theme.onSurfaceVariant};
+`;
 
-  .title {
-    font-size: 1.25rem;
-    color: ${oc.gray[8]};
-    width: 320px;
-  }
-  .ambr {
-    font-size: 1.1rem;
-    color: ${oc.gray[6]};
-    width: 240px;
-  }
-  .name {
-    font-size: 1.1rem;
-    color: ${oc.gray[6]};
-    width: 120px;
-  }
+const Ambr = styled.div`
+    font-size: 1rem;
+    color: ${p => p.theme.onSurfaceVariant};
 `;
 
 const SpinnerWrapper = styled.div`
@@ -153,7 +127,7 @@ class Item extends Component {
       handleEdit,
       handleDelete
     } = this;
-    
+
     const {
       disabled,
       profile,
@@ -171,42 +145,40 @@ class Item extends Component {
 
     return (
       <Card disabled={disabled} onClick={() => onView(_id)}>
-        <Profile>
-          <div className="title">{title}</div>
-          <div className="ambr">
-            {ambr['downlink'] === undefined ? "unlimited" :
-              ambr.downlink['value'] === undefined ? "unlimited" :
-                ambr.downlink.value
-            } {ambr['downlink'] === undefined ? "unlimited" :
-                 ambr.downlink['unit'] === undefined ? "bps" :
-                    ambr.downlink.unit === 0 ? "bps" :
-                    ambr.downlink.unit === 1 ? "Kbps" :
-                    ambr.downlink.unit === 2 ? "Mbps" :
+        <Title>{title}</Title>
+        <Ambr>
+          {ambr['downlink'] === undefined ? "unlimited" :
+            ambr.downlink['value'] === undefined ? "unlimited" :
+              ambr.downlink.value
+          } {ambr['downlink'] === undefined ? "unlimited" :
+            ambr.downlink['unit'] === undefined ? "bps" :
+              ambr.downlink.unit === 0 ? "bps" :
+                ambr.downlink.unit === 1 ? "Kbps" :
+                  ambr.downlink.unit === 2 ? "Mbps" :
                     ambr.downlink.unit === 3 ? "Gbps" :
-                    ambr.downlink.unit === 4 ? "Tbps" :
-                      "Unknown Unit"
-            } / {ambr['uplink'] === undefined ? "unlimited" :
-              ambr.uplink['value'] === undefined ? "unlimited" :
-                ambr.uplink.value
-            } {ambr['uplink'] === undefined ? "unlimited" :
-                 ambr.uplink['unit'] === undefined ? "bps" :
-                    ambr.uplink.unit === 0 ? "bps" :
-                    ambr.uplink.unit === 1 ? "Kbps" :
-                    ambr.uplink.unit === 2 ? "Mbps" :
+                      ambr.downlink.unit === 4 ? "Tbps" :
+                        "Unknown Unit"
+          } / {ambr['uplink'] === undefined ? "unlimited" :
+            ambr.uplink['value'] === undefined ? "unlimited" :
+              ambr.uplink.value
+          } {ambr['uplink'] === undefined ? "unlimited" :
+            ambr.uplink['unit'] === undefined ? "bps" :
+              ambr.uplink.unit === 0 ? "bps" :
+                ambr.uplink.unit === 1 ? "Kbps" :
+                  ambr.uplink.unit === 2 ? "Mbps" :
                     ambr.uplink.unit === 3 ? "Gbps" :
-                    ambr.uplink.unit === 4 ? "Tbps" :
-                      "Unknown Unit" }
-           </div>
-        </Profile>
+                      ambr.uplink.unit === 4 ? "Tbps" :
+                        "Unknown Unit"}
+        </Ambr>
         <div className="actions">
           <Tooltip content='Edit' width="60px">
-            <CircleButton onClick={handleEdit}><EditIcon/></CircleButton>
+            <CircleButton onClick={handleEdit}><EditIcon /></CircleButton>
           </Tooltip>
           <Tooltip content='Delete' width="60px">
-            <CircleButton className="delete" onClick={handleDelete}><DeleteIcon/></CircleButton>
+            <CircleButton className="delete" onClick={handleDelete}><DeleteIcon /></CircleButton>
           </Tooltip>
         </div>
-        {disabled && <SpinnerWrapper><Spinner sm/></SpinnerWrapper>}
+        {disabled && <SpinnerWrapper><Spinner sm /></SpinnerWrapper>}
       </Card>
     )
   }

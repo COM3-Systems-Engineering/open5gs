@@ -51,6 +51,7 @@ function getHoverColor(props) {
 function getColor(props) {
   if (props.primary) return props.theme.surface;
   if (props.secondary) return props.theme.surfaceContainerHigh;
+  if (props.danger) return props.theme.error;
   return props.theme.surface; // default
 }
 

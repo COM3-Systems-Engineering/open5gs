@@ -7,35 +7,40 @@ import Item from './Item';
 
 const Wrapper = styled.div`
   display: block;
-  margin: 2rem;
+  margin: 1rem;
   border: 1px solid ${p => p.theme.outline};
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: ${shadows.sm};
-  
+  min-width: 600px;
+`
+
+const ScrollArea = styled.div`
+  overflow-y: auto;
+  max-height: 600px;
+
   ${media.mobile`
-    margin: 0.5rem 0.25rem;
+    max-height: 400px;
   `}
 `
 
 const Account = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex:1;
-  line-height: 2.5rem;
-  padding : 0.25rem 2.5rem;
-  border-bottom: 1px solid ${p => p.theme.outline};
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 2rem;
+`;
 
-  .username {
+const Username = styled.div`
     font-size: 1rem;
+    opacity: 0.8;
     color: ${p => p.theme.onSurfaceVariant};
-    width: 320px;
-  }
-  .role {
+`;
+
+const Role = styled.div`
     font-size: 1rem;
+    opacity: 0.8;
     color: ${p => p.theme.onSurfaceVariant};
-    width: 240px;
-  }
 `;
 
 const propTypes = {
@@ -52,7 +57,7 @@ const List = ({ accounts, deletedId, onEdit, onDelete, session }) => {
 
   const accountList = accounts
     .map(account =>
-      <Item 
+      <Item
         key={account.username}
         session={session}
         account={account}
@@ -64,11 +69,14 @@ const List = ({ accounts, deletedId, onEdit, onDelete, session }) => {
 
   return (
     <Wrapper>
-      <Account>
-        <div className='username'>Usuário</div>
-        <div className='role'>Perfil</div>
-      </Account>
-      {accountList}
+      <ScrollArea>
+        <Account>
+          <Username>User</Username>
+          <Role>Role</Role>
+          <Role style={{ width: '34px', justifySelf: 'end' }}></Role>
+        </Account>
+        {accountList}
+      </ScrollArea>
     </Wrapper>
   )
 }

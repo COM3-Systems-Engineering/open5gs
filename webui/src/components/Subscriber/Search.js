@@ -9,6 +9,8 @@ import SearchIcon from 'react-icons/lib/md/search';
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
+  padding: 0 1rem;
+  
 
   width: 700px;
   margin: 2rem auto 1rem auto;
@@ -23,11 +25,11 @@ const Wrapper = styled.div`
   }
 
   ${media.tablet`
-    width: 400px;
+    width: 500px;
   `}
 
   ${media.mobile`
-    margin: 0rem auto;
+    margin: 0 auto;
     width: 100%;
   `}
 

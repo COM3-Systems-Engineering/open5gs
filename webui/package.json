@@ -1,9 +1,9 @@
 {
-  "name": "open5gs",
-  "version": "2.7.0",
-  "description": "Open5gs",
+  "name": "COM3 5GS",
+  "version": "1.0.0",
+  "description": "COM3 5GS",
   "main": "index.js",
-  "repository": "https://github.com/open5gs/open5gs/webui",
+  "repository": "https://github.com/COM3-Systems-Engineering/open5gs/tree/main/webui",
   "author": "Open5gs Group",
   "license": "AGPL-3.0",
   "dependencies": {

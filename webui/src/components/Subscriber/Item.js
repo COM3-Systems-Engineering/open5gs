@@ -62,7 +62,7 @@ const CircleButton = styled.div`
     color: ${p => p.theme.onSurfaceVariant};
 
   border-radius: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 
   &:hover {
     color: ${p => p.theme.primary};

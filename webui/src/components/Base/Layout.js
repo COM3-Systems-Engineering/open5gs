@@ -79,7 +79,7 @@ const propTypes = {
 }
 
 const defaultProps = {
-  title: `Open5GS ${Package.version}`
+  title: `COM3 5GS ${Package.version}`
 }
 
 Layout.propTypes = propTypes;

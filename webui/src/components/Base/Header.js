@@ -79,7 +79,7 @@ const Header = ({ onSidebarToggle, onLogoutRequest, onToggleTheme, currentTheme 
       <MenuIcon/>
     </Menu>
     <Title>
-      COM3 Open5GS
+      COM3 5GS
     </Title>
     <LanguageSwitcher />
     <ToggleBtn onClick={onToggleTheme}>

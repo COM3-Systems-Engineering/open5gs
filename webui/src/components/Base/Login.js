@@ -211,7 +211,7 @@ const Login = ({
   <div>
     <Background />
     <Head>
-      <title>COM3 Open5gs - Entrar</title>
+      <title>COM3 5GS - Entrar</title>
     </Head>
     <Wrapper id='nprogress-base-login' width={width}>
 

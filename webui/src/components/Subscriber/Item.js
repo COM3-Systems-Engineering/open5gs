@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Component } from 'react';
 
 import { media, shadows } from 'helpers/style-utils';
-import oc from 'open-color';
 import styled from 'styled-components';
 
 import DeleteIcon from 'react-icons/lib/md/delete';
@@ -12,14 +11,9 @@ import { Spinner, Tooltip } from 'components';
 
 const Sizer = styled.div`
   display: inline-block;
-  width: 33.3%;
-  padding: 0.5rem;
+  width: 100%;
 
   ${p => p.disabled && 'opacity: 0.5; cursor: not-allowed;'};
-
-  ${media.desktop`
-    width: 50%;
-  `}
 
   ${media.tablet`
     width: 100%;
@@ -47,16 +41,10 @@ const Card = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    opacity: 0;
   }
 
   &:hover {
     box-shadow: ${shadows.md};
-
-    .actions {
-      ${p => p.disabled ? 'opacity: 0;' : 'opacity: 1;'};
-    }
   }
 
   border-radius: 10px;
@@ -71,18 +59,18 @@ const CircleButton = styled.div`
   justify-content: center;
   margin: 1px;
 
-  color: ${props => props.theme.onSurface};
+    color: ${p => p.theme.onSurfaceVariant};
 
   border-radius: 1rem;
   font-size: 1.5rem;
 
   &:hover {
-    color: ${oc.indigo[6]};
+    color: ${p => p.theme.primary};
   }
 
   &.delete {
     &:hover {
-      color: ${oc.pink[6]};
+      color: ${p => p.theme.error};
     }
   }
 `

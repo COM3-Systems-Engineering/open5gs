@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 
-import oc from 'open-color';
 import styled from 'styled-components';
 
 import DeleteIcon from 'react-icons/lib/md/delete';
@@ -35,18 +34,18 @@ const CircleButton = styled.div`
   justify-content: center;
   margin: 1px;
 
-  color: ${oc.gray[6]};
+    color: ${p => p.theme.onSurfaceVariant};
 
   border-radius: 1rem;
   font-size: 1.5rem;
 
   &:hover {
-    color: ${oc.indigo[6]};
+    color: ${p => p.theme.primary};
   }
 
   &.delete {
     &:hover {
-      color: ${oc.pink[6]};
+      color: ${p => p.theme.error};
     }
   }
 `

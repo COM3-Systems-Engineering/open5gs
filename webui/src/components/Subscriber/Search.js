@@ -6,15 +6,17 @@ import styled from 'styled-components';
 import ClearIcon from 'react-icons/lib/md/clear';
 import SearchIcon from 'react-icons/lib/md/search';
 
+const Padding = styled.div`
+  padding: 0 1rem;
+`
+
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   padding: 0 1rem;
   
-
-  width: 700px;
-  margin: 2rem auto 1rem auto;
-
+  margin: 1rem auto;
+  max-width: 700px;
   background: ${props => props.theme.surfaceContainer};
   color: ${props => props.theme.text};
   box-shadow: ${shadows.sm}
@@ -29,7 +31,7 @@ const Wrapper = styled.div`
   `}
 
   ${media.mobile`
-    margin: 0 auto;
+    margin: 1rem auto ;
     width: 100%;
   `}
 
@@ -45,7 +47,7 @@ const SearchIconWrapper = styled.div`
 
 const Input = styled.input`
   padding : 0.8rem;
-  margin: 0 auto;
+
   width: 100%;
 
   font-size: 1rem;
@@ -65,6 +67,8 @@ const ClearIconWrapper = styled.div`
 `
 
 const Search = ({ value, onChange, onClear }) => (
+  <Padding>
+
   <Wrapper>
     <SearchIconWrapper><SearchIcon/></SearchIconWrapper>
     <Input 
@@ -76,6 +80,7 @@ const Search = ({ value, onChange, onClear }) => (
       </ClearIconWrapper>
     }
   </Wrapper>
+    </Padding>
 
 )
 

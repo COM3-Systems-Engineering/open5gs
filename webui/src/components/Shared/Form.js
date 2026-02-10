@@ -40,7 +40,7 @@ const Header = styled.div`
 `
 
 const Body = styled.div`
-  padding: 2rem;  
+  padding: 1rem;  
   font-size: 14px;
   background: ${p => p.theme.surfaceContainerLowest};
     color: !${p => p.theme.onSurface};

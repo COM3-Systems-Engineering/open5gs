@@ -37,7 +37,7 @@ const CircleButton = styled.div`
     color: ${p => p.theme.onSurfaceVariant};
 
   border-radius: 1rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 
   &:hover {
     color: ${p => p.theme.primary};
@@ -51,12 +51,12 @@ const CircleButton = styled.div`
 `
 
 const Username = styled.div`
-    font-size: 1rem;
+    font-size: 14px;
     color: ${p => p.theme.onSurfaceVariant};
 `;
 
 const Role = styled.div`
-    font-size: 1rem;
+    font-size: 14px;
     color: ${p => p.theme.onSurfaceVariant};
 `;
 
